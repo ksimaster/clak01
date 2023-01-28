@@ -5,6 +5,8 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
     private const int BackgroundCount = 2;
+    public int playerHealth = 3;
+    public Text playerHealthText;
 
     public static float health;
     public static float maxHealth;
@@ -54,8 +56,15 @@ public class Health : MonoBehaviour
             bossTimerText.gameObject.SetActive(false);            
             isBoss = false;
 
-            // Меню, сброс нужно добавить
-            Growth.PlayerDeath();
+            Growth.BossDeath();
+            playerHealth -= 1;
+            playerHealthText.text = $"{playerHealth}";
+            if (playerHealth == 0)
+            {
+                // Меню, сброс нужно добавить
+                Growth.PlayerDeath();
+                return;
+            }
 
             health = maxHealth;
             health -= 0.01f; // this is enough to move the health bar slightly.
@@ -95,6 +104,7 @@ public class Health : MonoBehaviour
         if (isBoss)
         {
             BossKill();
+            enemySwitcher.NextLevel();
         }
 
         // if the monster which died is not the last monster before the boss, spawn a normal monster
@@ -129,12 +139,10 @@ public class Health : MonoBehaviour
         {
             health -= ClickButton.amountPerSecond; // decreases the mosnter health if the mosnter is alive
         }
-
     }
 
     void BossKill() // called if the boss dies
     {
-        
         isBoss = false;
         Growth.BossDeath(); // lowers health so all the monster arent bloody bosses
         backgroundCounter++; // switches background

@@ -68,7 +68,7 @@ public class UpgradeManager : MonoBehaviour
         ScoreManager.Increase();
         calledUpgrade = true;
         valueIndexRef++;
-        clickValueText.text = "Атака: +" + clickValueValue(valueIndexRef);
+        clickValueText.text = "Сила заклинаний: +" + clickValueValue(valueIndexRef);
         clickValuePriceText.text = "Цена: " + clickValuePrices(valueIndexRef);
     }
 
@@ -97,7 +97,7 @@ public class UpgradeManager : MonoBehaviour
         ScoreManager.Increase();
         calledUpgrade = true;
         сritDamageIndexRef++;
-        critDamageText.text = "Крит урон: +" + critDamageValue(сritDamageIndexRef);
+        critDamageText.text = "Сила криты: +" + critDamageValue(сritDamageIndexRef);
         critDamagePriceText.text = "Цена: " + critDamagePrices(сritDamageIndexRef);
     }
 }

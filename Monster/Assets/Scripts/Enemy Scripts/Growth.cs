@@ -21,6 +21,7 @@ public class Growth : MonoBehaviour
 
     public static void PlayerDeath()
     {
-        Health.maxHealth *= 0.1f / (float)(1.2 * 1.2 * 1.2 * 1.2 * 1.2 * 1.2 * 1.2 * 1.2 * 1.2 * 1.2);
+        Time.timeScale = 0;
+        // Death processing
     }
 }
