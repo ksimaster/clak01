@@ -11,8 +11,9 @@ public class EnemySwitcher : MonoBehaviour
     public Sprite[] monsters;
     
     public bool spawnEnemy = false;
-    private int compare = 0;
+    private string compare = "";
     private int currentLevel = 0;
+    public bool IsBoss = false;
 
     private Dictionary<int, List<Sprite>> monsterDict = new Dictionary<int, List<Sprite>>();
 
@@ -25,6 +26,7 @@ public class EnemySwitcher : MonoBehaviour
             currentLevel = 0;
         }
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,14 +64,27 @@ public class EnemySwitcher : MonoBehaviour
 
     public void ChangeSprite()
     {
-        var randomId = Random.Range(0, monsterDict[currentLevel].Count);
-
-        while (randomId == compare)
+        Sprite randomMonster;
+        while (true)
         {
-            randomId = Random.Range(0, monsterDict[currentLevel].Count);
+
+            var randomLevel = currentLevel > 0 ? Random.Range(0, 2) : 0;
+            var level = currentLevel - randomLevel;
+            randomMonster = monsterDict[level][Random.Range(0, monsterDict[level].Count)];
+            if (randomMonster.name != compare)
+            {
+                break;
+            }
         }
 
-        compare = randomId;
-        image.sprite = monsterDict[currentLevel][randomId];
+        compare = randomMonster.name;
+        image.sprite = randomMonster;
+
+        if (IsBoss)
+        {
+            var scaleChange = new Vector3(0.3f, 0.3f, 0.3f);
+            GameObject.FindGameObjectWithTag("Click").GetComponent<RectTransform>().transform.localScale += scaleChange;
+            IsBoss = false;
+        }
     }  
 }

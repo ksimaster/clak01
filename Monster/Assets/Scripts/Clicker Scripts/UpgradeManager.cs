@@ -22,13 +22,13 @@ public class UpgradeManager : MonoBehaviour
     public Text critChanceText;
     public Text critDamageText;
 
-    private Func<int, int> clickValuePrices = (int i) => (int)Mathf.Round(10 * Mathf.Pow(5, i));
-    private Func<int, int> perSecondPrices = (int i) => (int)Mathf.Round(10 * Mathf.Pow(4, i));
-    private Func<int, int> critChancePrices = (int i) => (int)Mathf.Round(10 * Mathf.Pow(4, i));
-    private Func<int, int> critDamagePrices = (int i) => (int)Mathf.Round(10 * Mathf.Pow(5, i));
+    private Func<int, int> clickValuePrices = (int i) => (int)Mathf.Round(150 * (i + 1) * Mathf.Log(i + 2));
+    private Func<int, int> perSecondPrices = (int i) => (int)Mathf.Round(180 * (i + 1) * Mathf.Log(i + 2));
+    private Func<int, int> critChancePrices = (int i) => (int)Mathf.Round(10 * Mathf.Pow(2, i));
+    private Func<int, int> critDamagePrices = (int i) => (int)Mathf.Round((i + 1) * (i + 1) * Mathf.Log(i + 2));
 
-    private Func<int, int> clickValueValue = (int i) => (int)Mathf.Round(1 * Mathf.Pow(3, i));
-    private Func<int, int> perSecondValue = (int i) => (int)Mathf.Round(1 * Mathf.Pow(3, i));
+    private Func<int, int> clickValueValue = (int i) => (int)Mathf.Round((i + 1) * Mathf.Log(i + 2) - (i) * Mathf.Log(i + 1));
+    private Func<int, int> perSecondValue = (int i) => (int)Mathf.Round((i + 1) * Mathf.Log(2*i + 2) - (i) * Mathf.Log(2*i + 1));
     private Func<int, int> critChanceValue = (int i) => 1;
     private Func<int, int> critDamageValue = (int i) => 1;
 

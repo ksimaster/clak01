@@ -4,19 +4,26 @@ using UnityEngine;
 
 public class Growth : MonoBehaviour
 {
+    private static float bossScale = 10f;
+
     public static void HealthGrowth()
     {
-        Health.maxHealth *= 1.2f;
+        Health.maxHealth = Health.maxHealth + Mathf.Log(2, Health.maxHealth + 1f) + 1;
+        Debug.Log(Health.maxHealth);
     }
 
     public static void Boss()
     {
-        Health.maxHealth *= 12f;
+        Health.maxHealth *= bossScale;
+        bossScale = bossScale + Mathf.Log(2, Health.maxHealth + 1f) + 1;
     }
 
     public static void BossDeath()
     {
-        Health.maxHealth *= 0.1f;
+        Health.maxHealth /= bossScale;
+        Health.maxHealth = Health.maxHealth + Mathf.Log(2, Health.maxHealth + 1f) + 1;
+        var scaleChange = new Vector3(0.3f, 0.3f, 0.3f);
+        GameObject.FindGameObjectWithTag("Click").GetComponent<RectTransform>().transform.localScale -= scaleChange;
     }
 
     public static void PlayerDeath()

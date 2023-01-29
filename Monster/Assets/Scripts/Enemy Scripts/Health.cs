@@ -4,7 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
-    private const int BackgroundCount = 2;
+    private const int BackgroundCount = 9;
+    private const int BossPerMobs = 14;
+    private const float TimePerBoss = 30f;
+
     public int playerHealth = 3;
     public Text playerHealthText;
 
@@ -18,7 +21,9 @@ public class Health : MonoBehaviour
     public static float respawnDelay;
     public Text healthText;
     public int roundedHealth;
-    public int bossCounter = 9;
+
+    public int bossCounter = BossPerMobs;
+
     public EnemySwitcher enemySwitcher;
     private int backgroundCounter = 0;
 
@@ -114,11 +119,12 @@ public class Health : MonoBehaviour
             Growth.HealthGrowth();
         }
         else // otherwise spawn the boss 
-        {
+        {                
             Growth.Boss(); // give the boss 10x health
             isBoss = true;
-            bossCounter = 9; // reset the counter
-            bossTimer = Time.time + 30f; // set the timer to 30 seconds in the future.
+            enemySwitcher.IsBoss = true;
+            bossCounter = BossPerMobs; // reset the counter
+            bossTimer = Time.time + TimePerBoss; // set the timer to 30 seconds in the future.
             bossTimerText.gameObject.SetActive(true); // enable the timer
         }
 
