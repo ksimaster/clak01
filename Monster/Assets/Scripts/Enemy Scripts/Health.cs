@@ -29,7 +29,10 @@ public class Health : MonoBehaviour
 
     public float bossTimer;
     public Text bossTimerText;
-    
+
+    public Text TotalMonstersText;
+    private int totalMonsters = 0;
+
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +53,8 @@ public class Health : MonoBehaviour
         {
             monsterIsRespawning = true;
             MonsterKilled();
+            totalMonsters++;
+            TotalMonstersText.text = $"{totalMonsters}";
         }
         else if (health >= 0 && isBoss) // if the monster is alive and is a boss monster
         {

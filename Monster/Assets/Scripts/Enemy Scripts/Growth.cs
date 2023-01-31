@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Growth : MonoBehaviour
 {
-    private static float bossScale = 10f;
+    private static float bossScale = 1f;
 
     public static void HealthGrowth()
     {
@@ -14,8 +14,10 @@ public class Growth : MonoBehaviour
 
     public static void Boss()
     {
+        var addScale = 150 / Health.maxHealth;
+        bossScale += addScale;
         Health.maxHealth *= bossScale;
-        bossScale = bossScale + Mathf.Log(2, Health.maxHealth + 1f) + 1;
+        bossScale = bossScale + Mathf.Log(2, Health.maxHealth + 3f) + 3;
     }
 
     public static void BossDeath()
