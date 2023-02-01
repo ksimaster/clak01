@@ -27,10 +27,4 @@ public class Growth : MonoBehaviour
         var scaleChange = new Vector3(0.3f, 0.3f, 0.3f);
         GameObject.FindGameObjectWithTag("Click").GetComponent<RectTransform>().transform.localScale -= scaleChange;
     }
-
-    public static void PlayerDeath()
-    {
-        Time.timeScale = 0;
-        // Death processing
-    }
 }

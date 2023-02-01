@@ -5,15 +5,14 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
     private const int BackgroundCount = 9;
-    private const int BossPerMobs = 14;
+    private const int BossPerMobs = 6;
     private const float TimePerBoss = 30f;
+    private int bossCounter = BossPerMobs;
+    private int playerHealth = 3;
 
-    public int playerHealth = 3;
     public Text playerHealthText;
-
     public static float health;
     public static float maxHealth;
-    private float _percentHealth;
     public static bool monsterIsRespawning;
     public bool isBoss;
     public Slider healthBar;
@@ -22,7 +21,6 @@ public class Health : MonoBehaviour
     public Text healthText;
     public int roundedHealth;
 
-    public int bossCounter = BossPerMobs;
 
     public EnemySwitcher enemySwitcher;
     private int backgroundCounter = 0;
@@ -32,6 +30,8 @@ public class Health : MonoBehaviour
 
     public Text TotalMonstersText;
     private int totalMonsters = 0;
+
+    public GameObject DeathPanel;
 
 
     // Start is called before the first frame update
@@ -72,7 +72,7 @@ public class Health : MonoBehaviour
             if (playerHealth == 0)
             {
                 // Меню, сброс нужно добавить
-                Growth.PlayerDeath();
+                PlayerDeath();
                 return;
             }
 
@@ -173,5 +173,12 @@ public class Health : MonoBehaviour
     void BackgroundSwitch()
     {
         backgroundSwitch.SelectBackground(backgroundCounter); // switches to the next background
+    }
+
+    void PlayerDeath()
+    {
+        Time.timeScale = 0;
+        DeathPanel.SetActive(true);
+        // Death processing
     }
 }
