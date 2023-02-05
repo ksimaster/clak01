@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class EnemySwitcher : MonoBehaviour
 {
     private const int MaxLevel = 9;
@@ -15,6 +15,7 @@ public class EnemySwitcher : MonoBehaviour
     private int currentLevel = 0;
     public bool IsBoss = false;
 
+    public Health Health;
     private Dictionary<int, List<Sprite>> monsterDict = new Dictionary<int, List<Sprite>>();
 
 

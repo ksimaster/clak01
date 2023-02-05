@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    public static float score;
-    private static int roundedScore;
-    public static Text scoreDisplay;
+    public float score;
+    private int roundedScore;
+    public Text scoreDisplay;
     // public float timer;
     public Texture2D cursor;
 
@@ -20,16 +18,11 @@ public class ScoreManager : MonoBehaviour
         Cursor.SetCursor(cursor, cursorOffset, CursorMode.Auto);
 
         scoreDisplay = GameObject.FindGameObjectWithTag("Score").GetComponent<Text>();
-        InvokeRepeating("Timer", 1, 0.25f);
     }
-    public static void Increase()
+
+    public void Increase()
     {
         roundedScore = Mathf.RoundToInt(score);
         scoreDisplay.text = "" + roundedScore;
-    }
-    private void Timer()
-    {
-        score += ClickButton.amountPerSecond;
-        Increase();
     }
 }

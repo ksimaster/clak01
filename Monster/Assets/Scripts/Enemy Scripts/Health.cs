@@ -1,23 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
+    public const float respawnDelay = 0.1f;
+    private const float TimesPerSecond = 4f;
     private const int BackgroundCount = 9;
     private const int BossPerMobs = 6;
     private const float TimePerBoss = 30f;
+
     private int bossCounter = BossPerMobs;
     private int playerHealth = 3;
+    private int startHealth = 10;
 
     public Text playerHealthText;
-    public static float health;
-    public static float maxHealth;
-    public static bool monsterIsRespawning;
+    public float health;
+    public float maxHealth;
+    public bool monsterIsRespawning;
     public bool isBoss;
     public Slider healthBar;
     public BackgroundSwitch backgroundSwitch;
-    public static float respawnDelay;
     public Text healthText;
     public int roundedHealth;
 
@@ -32,18 +33,23 @@ public class Health : MonoBehaviour
     private int totalMonsters = 0;
 
     public GameObject DeathPanel;
+    private ScoreManager ScoreManager;
+    private UpgradeManager UpgradeManager;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        health = 5;
-        maxHealth = health;
+        Growth.Init();
+        health = startHealth;
+        maxHealth = startHealth;
         monsterIsRespawning = false;
-        respawnDelay = 0.1f;
-        InvokeRepeating("Timer", 1, 0.25f);
+        InvokeRepeating("Timer", 1, 1/TimesPerSecond);
         healthText = GameObject.FindGameObjectWithTag("Health").GetComponent<Text>();
         bossTimerText.gameObject.SetActive(false);
+
+        UpgradeManager = GameObject.FindGameObjectWithTag("UpgradeManager").GetComponent<UpgradeManager>();
+        ScoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
     }
 
     // Update is called once per frame
@@ -66,7 +72,8 @@ public class Health : MonoBehaviour
             bossTimerText.gameObject.SetActive(false);            
             isBoss = false;
 
-            Growth.BossDeath();
+            Growth.BossDeath(this);
+            Growth.OnPlayerLifeLoss();
             playerHealth -= 1;
             playerHealthText.text = $"{playerHealth}";
             if (playerHealth == 0)
@@ -121,11 +128,11 @@ public class Health : MonoBehaviour
         if (bossCounter > 0)
         {
             bossCounter--;
-            Growth.HealthGrowth();
+            Growth.HealthGrowth(this);
         }
         else // otherwise spawn the boss 
         {                
-            Growth.Boss(); // give the boss 10x health
+            Growth.Boss(this); // give the boss 10x health
             isBoss = true;
             enemySwitcher.IsBoss = true;
             bossCounter = BossPerMobs; // reset the counter
@@ -148,14 +155,17 @@ public class Health : MonoBehaviour
     {
         if(!monsterIsRespawning)
         {
-            health -= ClickButton.amountPerSecond; // decreases the mosnter health if the mosnter is alive
+            var dmg = UpgradeManager.ClickMonster.amountPerSecond;
+            ScoreManager.score += dmg/TimesPerSecond;
+            ScoreManager.Increase(); // Update the health slider value.
+            health -= dmg/ TimesPerSecond; // decreases the mosnter health if the mosnter is alive
         }
     }
 
     void BossKill() // called if the boss dies
     {
         isBoss = false;
-        Growth.BossDeath(); // lowers health so all the monster arent bloody bosses
+        Growth.BossDeath(this); // lowers health so all the monster arent bloody bosses
         backgroundCounter++; // switches background
         bossTimerText.gameObject.SetActive(false); // disable the timer
 

@@ -22,13 +22,19 @@ public class UpgradeManager : MonoBehaviour
     public Text critChanceText;
     public Text critDamageText;
 
-    private Func<int, int> clickValuePrices = (int i) => i == 0 ? 150 : (int)Mathf.Round(150 * (i + 1) * Mathf.Log(i + 2));
-    private Func<int, int> perSecondPrices = (int i) => i == 0 ? 180 : (int)Mathf.Round(180 * (i + 1) * Mathf.Log(i + 2));
-    private Func<int, int> critChancePrices = (int i) => (int)Mathf.Round(10 * Mathf.Pow(2, i));
-    private Func<int, int> critDamagePrices = (int i) => i == 0 ? 1 : (int)Mathf.Round((i + 1) * (i + 1) * Mathf.Log(i + 2));
+    public ScoreManager ScoreManager;
+    public ClickMonster ClickMonster;
 
-    private Func<int, int> clickValueValue = (int i) => i == 0 ? 1 : (int)Mathf.Round((i + 1) * Mathf.Log(i + 2) - (i) * Mathf.Log(i + 1));
-    private Func<int, int> perSecondValue = (int i) => i == 0 ? 1 : (int)Mathf.Round((i + 1) * Mathf.Log(2*i + 2) - (i) * Mathf.Log(2*i + 1));
+    public float CritDamage = 2f;
+    public float CritChance = 1f;
+
+    private Func<int, int> clickValuePrices = (int i) => i == 0 ? 150 : (int)Mathf.Round(150 * (i + 1) * Mathf.Log(i + 2));
+    private Func<int, int> perSecondPrices = (int i) => i == 0 ? 100 : (int)Mathf.Round(100 * (i + 1) * Mathf.Log(i + 2));
+    private Func<int, int> critChancePrices = (int i) => (int)Mathf.Round(10 * (i + 5) * Mathf.Pow(2, i/2f));
+    private Func<int, int> critDamagePrices = (int i) => i == 0 ? 200 : (int)Mathf.Round((i + 5) * (i + 5) * (i + 5) * Mathf.Log(i + 7));
+
+    private Func<int, int> clickValueValue = (int i) => i == 0 ? 1 : (int)Math.Max(1, Mathf.Round((i + 1)/2 * Mathf.Log(i + 2) - i/2 * Mathf.Log(i + 1)));
+    private Func<int, int> perSecondValue = (int i) => i == 0 ? 2 : (int)(2*(Mathf.Round((i + 1) * Mathf.Log(2*i + 2) - (i) * Mathf.Log(2*i + 1))));
     private Func<int, int> critChanceValue = (int i) => 1;
     private Func<int, int> critDamageValue = (int i) => 1;
 
@@ -50,7 +56,7 @@ public class UpgradeManager : MonoBehaviour
             return;
 
         ScoreManager.score -= perSecondPrices(perSecondIndexRef);
-        ClickButton.amountPerSecond += perSecondValue(perSecondIndexRef);
+        ClickMonster.amountPerSecond += perSecondValue(perSecondIndexRef);
         ScoreManager.Increase();
         calledUpgrade = true;
         perSecondIndexRef++;
@@ -64,7 +70,7 @@ public class UpgradeManager : MonoBehaviour
             return;
 
         ScoreManager.score -= clickValuePrices(valueIndexRef);
-        ClickButton.clickValue += clickValueValue(valueIndexRef);
+        ClickMonster.clickValue += clickValueValue(valueIndexRef);
         ScoreManager.Increase();
         calledUpgrade = true;
         valueIndexRef++;
@@ -79,7 +85,7 @@ public class UpgradeManager : MonoBehaviour
             return;
 
         ScoreManager.score -= critChancePrices(critChanceIndexRef);
-        CriticalHit.critChance += critChanceValue(critChanceIndexRef);
+        CritChance += critChanceValue(critChanceIndexRef);
         ScoreManager.Increase();
         calledUpgrade = true;
         critChanceIndexRef++;
@@ -93,7 +99,7 @@ public class UpgradeManager : MonoBehaviour
             return;
 
         ScoreManager.score -= critDamagePrices(сritDamageIndexRef);
-        CriticalHit.critDamage += critDamageValue(сritDamageIndexRef);
+        CritDamage += critDamageValue(сritDamageIndexRef);
         ScoreManager.Increase();
         calledUpgrade = true;
         сritDamageIndexRef++;

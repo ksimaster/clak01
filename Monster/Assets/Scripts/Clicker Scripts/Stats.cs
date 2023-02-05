@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Stats : MonoBehaviour
@@ -11,7 +9,8 @@ public class Stats : MonoBehaviour
     private Text _currentCritDamage;
     private float _critDamageHolder;
     
-    public UpgradeManager upgradeManager; 
+    public UpgradeManager UpgradeManager; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,22 +19,22 @@ public class Stats : MonoBehaviour
         _currentCritChance = GameObject.FindGameObjectWithTag("CritChanceText").GetComponent<Text>();
         _currentCritDamage = GameObject.FindGameObjectWithTag("CritDamageText").GetComponent<Text>();
 
-        upgradeManager = GameObject.FindGameObjectWithTag("UpgradeManager").GetComponent<UpgradeManager>();
+        UpgradeManager = GameObject.FindGameObjectWithTag("UpgradeManager").GetComponent<UpgradeManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (upgradeManager.calledUpgrade) 
+        if (UpgradeManager.calledUpgrade) 
         {
-            upgradeManager.calledUpgrade = false;
+            UpgradeManager.calledUpgrade = false;
 
             // updates all the text elements
-            _currentClickDamage.text = "Сила заклинаний: " + ClickButton.clickValue;
-            _currentDPS.text = "Автоклик: " + ClickButton.amountPerSecond;
-            _currentCritChance.text = "Шанс криты: " + CriticalHit.critChance + "%";
+            _currentClickDamage.text = "Сила заклинаний: " + UpgradeManager.ClickMonster.clickValue;
+            _currentDPS.text = "Автоклик: " + UpgradeManager.ClickMonster.amountPerSecond;
+            _currentCritChance.text = "Шанс криты: " + UpgradeManager.CritChance + "%";
 
-            _critDamageHolder = Mathf.Round(CriticalHit.critDamage * 10f) / 10f;
+            _critDamageHolder = Mathf.Round(UpgradeManager.CritDamage * 10f) / 10f;
             _currentCritDamage.text = "Сила криты: " + _critDamageHolder + "x";
         }
     }

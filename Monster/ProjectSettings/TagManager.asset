@@ -12,6 +12,7 @@ TagManager:
   - CritChanceText
   - CritDamageText
   - UpgradeManager
+  - ScoreManager
   layers:
   - Default
   - TransparentFX

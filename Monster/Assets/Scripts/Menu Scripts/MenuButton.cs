@@ -5,6 +5,7 @@ public class MenuButton : MonoBehaviour
 {
     public void ChangeScene(int sceneIndex)
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(sceneIndex);
     }
     public void OnApplicationQuit()

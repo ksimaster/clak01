@@ -1,29 +1,34 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Growth : MonoBehaviour
+public class Growth
 {
-    private static float bossScale = 1f;
+    private static float bossScale = 0f;
 
-    public static void HealthGrowth()
+    public static void Init()
     {
-        Health.maxHealth = Health.maxHealth + Mathf.Log(2, Health.maxHealth + 1f) + 1;
-        Debug.Log(Health.maxHealth);
+        bossScale = 4f;
     }
 
-    public static void Boss()
+    public static void OnPlayerLifeLoss()
     {
-        var addScale = 150 / Health.maxHealth;
-        bossScale += addScale;
-        Health.maxHealth *= bossScale;
-        bossScale = bossScale + Mathf.Log(2, Health.maxHealth + 3f) + 3;
+        bossScale -= 1;
     }
 
-    public static void BossDeath()
+    public static void HealthGrowth(Health health)
     {
-        Health.maxHealth /= bossScale;
-        Health.maxHealth = Health.maxHealth + Mathf.Log(2, Health.maxHealth + 1f) + 1;
+        health.maxHealth = health.maxHealth + Mathf.Log(health.maxHealth + 1f,2) + 2;
+    }
+
+    public static void Boss(Health health)
+    {
+        health.maxHealth *= bossScale;
+        bossScale = bossScale + 0.2f;
+    }
+
+    public static void BossDeath(Health health)
+    {
+        health.maxHealth /= bossScale;
+        HealthGrowth(health);
         var scaleChange = new Vector3(0.3f, 0.3f, 0.3f);
         GameObject.FindGameObjectWithTag("Click").GetComponent<RectTransform>().transform.localScale -= scaleChange;
     }
