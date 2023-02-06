@@ -1468,10 +1468,10 @@ RectTransform:
   m_Father: {fileID: 4625461}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.1, y: 0.1}
+  m_AnchorMax: {x: 0.9, y: 0.9}
+  m_AnchoredPosition: {x: -0.000030517578, y: -0.00002670288}
+  m_SizeDelta: {x: -0.000061035, y: -0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &401740878
 MonoBehaviour:
@@ -7301,6 +7301,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2063034761}
   - component: {fileID: 2063034760}
+  - component: {fileID: 2063034762}
   m_Layer: 0
   m_Name: LevelController
   m_TagString: Untagged
@@ -7335,3 +7336,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2063034762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063034759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 712a700dadedac840979ac2ae5e0578a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sounds: []
+  Effects: []
+  mainTheme: 
