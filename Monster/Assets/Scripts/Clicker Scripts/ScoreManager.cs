@@ -9,6 +9,8 @@ public class ScoreManager : MonoBehaviour
     // public float timer;
     public Texture2D cursor;
 
+    private UpgradeManager UpgradeManager;
+
     private void Start()
     {
         Vector2 cursorOffset = new Vector2(cursor.width / 2, cursor.height / 2);
@@ -18,11 +20,13 @@ public class ScoreManager : MonoBehaviour
         Cursor.SetCursor(cursor, cursorOffset, CursorMode.Auto);
 
         scoreDisplay = GameObject.FindGameObjectWithTag("Score").GetComponent<Text>();
+        UpgradeManager = GameObject.FindGameObjectWithTag("UpgradeManager").GetComponent<UpgradeManager>();
     }
 
     public void Increase()
     {
         roundedScore = Mathf.RoundToInt(score);
         scoreDisplay.text = "" + roundedScore;
+        UpgradeManager.UpdateButtons();
     }
 }

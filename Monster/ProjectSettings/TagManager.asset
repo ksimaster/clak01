@@ -13,6 +13,10 @@ TagManager:
   - CritDamageText
   - UpgradeManager
   - ScoreManager
+  - ClickValueButton
+  - AutoclickButton
+  - CritChanceButton
+  - CritValueButton
   layers:
   - Default
   - TransparentFX
