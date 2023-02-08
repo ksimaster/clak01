@@ -15,7 +15,4 @@ public class Sound
     public float Volume = 1f;
 
     public bool Mute = false;
-
-    
-    
 }

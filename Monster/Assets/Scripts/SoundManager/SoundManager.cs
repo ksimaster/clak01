@@ -13,24 +13,24 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
-            if (!PlayerPrefs.HasKey("Sound")) PlayerPrefs.SetInt("Sound", 1);
-            if (!PlayerPrefs.HasKey("Effect")) PlayerPrefs.SetInt("Effect", 1);
-            if (!PlayerPrefs.HasKey("SoundSlider")) PlayerPrefs.SetFloat("SoundSlider", 1f);
-            if (!PlayerPrefs.HasKey("EffectSlider")) PlayerPrefs.SetFloat("EffectSlider", 1f);
+        if (!PlayerPrefs.HasKey("Sound")) PlayerPrefs.SetInt("Sound", 1);
+        if (!PlayerPrefs.HasKey("Effect")) PlayerPrefs.SetInt("Effect", 1);
+        if (!PlayerPrefs.HasKey("SoundSlider")) PlayerPrefs.SetFloat("SoundSlider", 1f);
+        if (!PlayerPrefs.HasKey("EffectSlider")) PlayerPrefs.SetFloat("EffectSlider", 1f);
         //var i = 0;
         foreach (Sound sound in Sounds)
         {
             // sound.AudioSource = gameObject.AddComponent<AudioSource>();
             // sound.AudioSource.clip = sound.clip;
-            
+
             sound.AudioSource.volume = sound.Volume;
             sound.AudioSource.mute = sound.Mute;
-           // soundAudioSources[i] = sound.AudioSource;
-           // i++;
+            // soundAudioSources[i] = sound.AudioSource;
+            // i++;
         }
         foreach (Sound effect in Effects)
         {
-           // sound.AudioSource = gameObject.AddComponent<AudioSource>();
+            // sound.AudioSource = gameObject.AddComponent<AudioSource>();
             //sound.AudioSource.clip = sound.clip;
             effect.AudioSource.volume = effect.Volume;
             effect.AudioSource.mute = effect.Mute;
@@ -39,14 +39,14 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-       // Play(mainTheme);
+        // Play(mainTheme);
     }
 
     private void Update()
     {
         SoundCheck();
         EffectCheck();
-       SoundSliderCheck();
+        SoundSliderCheck();
         EffectSliderCheck();
     }
 
@@ -68,7 +68,7 @@ public class SoundManager : MonoBehaviour
         {
             foreach (Sound sound in Sounds)
             {
-                sound.AudioSource.mute = false;   
+                sound.AudioSource.mute = false;
             }
         }
         else
@@ -100,16 +100,16 @@ public class SoundManager : MonoBehaviour
 
     public void SoundSliderCheck()
     {
-       
-           // var j = 0;
-            foreach (Sound sound in Sounds)
-            {
-                sound.AudioSource.volume = PlayerPrefs.GetFloat("SoundSlider");
-               // soundAudioSources[j].volume = PlayerPrefs.GetFloat("SoundSlider");
-                Debug.Log(sound.AudioSource.volume);
-                //j++;
-            }
-        
+
+        // var j = 0;
+        foreach (Sound sound in Sounds)
+        {
+            sound.AudioSource.volume = PlayerPrefs.GetFloat("SoundSlider");
+            // soundAudioSources[j].volume = PlayerPrefs.GetFloat("SoundSlider");
+            Debug.Log(sound.AudioSource.volume);
+            //j++;
+        }
+
     }
 
     public void EffectSliderCheck()

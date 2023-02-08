@@ -15,7 +15,7 @@ public class MuteSoundManager : MonoBehaviour
         soundCheck.GetComponent<Toggle>().isOn = PlayerPrefs.GetInt("Sound") == 1 ? true : false;
         effectCheck.GetComponent<Toggle>().isOn = PlayerPrefs.GetInt("Effect") == 1 ? true : false;
         soundSlider.value = PlayerPrefs.GetFloat("SoundSlider");
-        soundSlider.value = PlayerPrefs.GetFloat("EffectSlider");
+        effectSlider.value = PlayerPrefs.GetFloat("EffectSlider");
     }
     private void Update()
     {
@@ -23,13 +23,13 @@ public class MuteSoundManager : MonoBehaviour
         AudioChecker(effectCheck, "Effect");
         SoundsSliderChanger();
         EffectsSliderChanger();
-       // PlayerPrefs.SetFloat("SoundSlider", soundSlider.value);
+        // PlayerPrefs.SetFloat("SoundSlider", soundSlider.value);
         //PlayerPrefs.SetFloat("EffectSlider", effectSlider.value);
 
     }
     public void AudioChecker(GameObject audioCheck, string namePref)
     {
-        if (audioCheck.GetComponent<Toggle>().isOn) 
+        if (audioCheck.GetComponent<Toggle>().isOn)
         {
             PlayerPrefs.SetInt(namePref, 1);
         }
@@ -37,7 +37,7 @@ public class MuteSoundManager : MonoBehaviour
         {
             PlayerPrefs.SetInt(namePref, 0);
         }
-    } 
+    }
 
     public void SoundsSliderChanger()
     {
@@ -49,5 +49,4 @@ public class MuteSoundManager : MonoBehaviour
         PlayerPrefs.SetFloat("EffectSlider", effectSlider.value);
         Debug.Log(PlayerPrefs.GetFloat("EffectSlider"));
     }
-
 }
