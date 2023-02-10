@@ -106,7 +106,7 @@ public class SoundManager : MonoBehaviour
         {
             sound.AudioSource.volume = PlayerPrefs.GetFloat("SoundSlider");
             // soundAudioSources[j].volume = PlayerPrefs.GetFloat("SoundSlider");
-            Debug.Log(sound.AudioSource.volume);
+           // Debug.Log(sound.AudioSource.volume);
             //j++;
         }
 

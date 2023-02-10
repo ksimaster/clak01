@@ -42,11 +42,11 @@ public class MuteSoundManager : MonoBehaviour
     public void SoundsSliderChanger()
     {
         PlayerPrefs.SetFloat("SoundSlider", soundSlider.value);
-        Debug.Log(PlayerPrefs.GetFloat("SoundSlider"));
+       // Debug.Log(PlayerPrefs.GetFloat("SoundSlider"));
     }
     public void EffectsSliderChanger()
     {
         PlayerPrefs.SetFloat("EffectSlider", effectSlider.value);
-        Debug.Log(PlayerPrefs.GetFloat("EffectSlider"));
+       // Debug.Log(PlayerPrefs.GetFloat("EffectSlider"));
     }
 }

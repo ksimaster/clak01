@@ -8054,6 +8054,7 @@ GameObject:
   - component: {fileID: 2063034762}
   - component: {fileID: 2063034763}
   - component: {fileID: 2063034764}
+  - component: {fileID: 2063034765}
   m_Layer: 0
   m_Name: LevelController
   m_TagString: Untagged
@@ -8233,6 +8234,19 @@ MonoBehaviour:
   - {fileID: -9144209028678326754, guid: c15c47bf318089741a5eb90d14b4f72b, type: 3}
   - {fileID: 8204475314785859574, guid: c15c47bf318089741a5eb90d14b4f72b, type: 3}
   m_Speed: 0.1
+--- !u!114 &2063034765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063034759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be5c4f890339a8f4e87455ac776b7cf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameScene: Clicker Game
 --- !u!1001 &8683952561526284392
 PrefabInstance:
   m_ObjectHideFlags: 0

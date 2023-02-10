@@ -60,6 +60,7 @@ public class Health : MonoBehaviour
             monsterIsRespawning = true;
             MonsterKilled();
             totalMonsters++;
+            PlayerPrefs.SetInt("ScoreMonsters", totalMonsters);
             TotalMonstersText.text = $"{totalMonsters}";
         }
         else if (health >= 0 && isBoss) // if the monster is alive and is a boss monster
