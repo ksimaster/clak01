@@ -31,11 +31,11 @@ public class Stats : MonoBehaviour
 
             // updates all the text elements
             _currentClickDamage.text = "Сила заклинаний: " + UpgradeManager.ClickMonster.clickValue;
-            _currentDPS.text = "Автоклик: " + UpgradeManager.ClickMonster.amountPerSecond;
-            _currentCritChance.text = "Шанс криты: " + UpgradeManager.CritChance + "%";
+            _currentDPS.text = "Авто заклятье: " + UpgradeManager.ClickMonster.amountPerSecond;
+            _currentCritChance.text = "Шанс крита: " + UpgradeManager.CritChance + "%";
 
             _critDamageHolder = Mathf.Round(UpgradeManager.CritDamage * 10f) / 10f;
-            _currentCritDamage.text = "Сила криты: " + _critDamageHolder + "x";
+            _currentCritDamage.text = "Крит: " + _critDamageHolder + "x";
         }
     }
 }

@@ -34,8 +34,8 @@ public class UpgradeManager : MonoBehaviour
     public float CritDamage = 2f;
     public float CritChance = 1f;
 
-    private Func<int, int> clickValuePrices = (int i) => i == 0 ? 150 : (int)Mathf.Round(150 * (i + 1) * Mathf.Log(i + 2));
-    private Func<int, int> perSecondPrices = (int i) => i == 0 ? 100 : (int)Mathf.Round(100 * (i + 1) * Mathf.Log(i + 2));
+    private Func<int, int> clickValuePrices = (int i) => i == 0 ? 50 : (int)Mathf.Round(150 * (i + 1) * Mathf.Log(i + 2));
+    private Func<int, int> perSecondPrices = (int i) => i == 0 ? 75 : (int)Mathf.Round(100 * (i + 1) * Mathf.Log(i + 2));
     private Func<int, int> critChancePrices = (int i) => (int)Mathf.Round(10 * (i + 5) * Mathf.Pow(2, i / 2f));
     private Func<int, int> critDamagePrices = (int i) => i == 0 ? 200 : (int)Mathf.Round((i + 5) * (i + 5) * (i + 5) * Mathf.Log(i + 7));
 
@@ -85,7 +85,7 @@ public class UpgradeManager : MonoBehaviour
         ScoreManager.Increase();
         calledUpgrade = true;
         perSecondIndexRef++;
-        perSecondText.text = "Автоклик: +" + perSecondValue(perSecondIndexRef);
+        perSecondText.text = "Авто заклятье +" + perSecondValue(perSecondIndexRef);
         perSecondPriceText.text = "Цена: " + perSecondPrices(perSecondIndexRef);
     }
 
@@ -101,7 +101,7 @@ public class UpgradeManager : MonoBehaviour
         ScoreManager.Increase();
         calledUpgrade = true;
         valueIndexRef++;
-        clickValueText.text = "Сила заклинаний: +" + clickValueValue(valueIndexRef);
+        clickValueText.text = "Сила заклинаний +" + clickValueValue(valueIndexRef);
         clickValuePriceText.text = "Цена: " + clickValuePrices(valueIndexRef);
     }
 
@@ -117,7 +117,7 @@ public class UpgradeManager : MonoBehaviour
         ScoreManager.Increase();
         calledUpgrade = true;
         critChanceIndexRef++;
-        critChanceText.text = "Шанс: +" + critChanceValue(critChanceIndexRef);
+        critChanceText.text = "Шанс крита +" + critChanceValue(critChanceIndexRef);
         critChancePriceText.text = "Цена: " + critChancePrices(critChanceIndexRef);
     }
 
@@ -133,7 +133,7 @@ public class UpgradeManager : MonoBehaviour
         ScoreManager.Increase();
         calledUpgrade = true;
         сritDamageIndexRef++;
-        critDamageText.text = "Сила криты: +" + critDamageValue(сritDamageIndexRef);
+        critDamageText.text = "Сила крита +" + critDamageValue(сritDamageIndexRef);
         critDamagePriceText.text = "Цена: " + critDamagePrices(сritDamageIndexRef);
     }
 
