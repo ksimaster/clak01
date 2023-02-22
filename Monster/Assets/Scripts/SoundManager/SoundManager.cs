@@ -113,4 +113,28 @@ public class SoundManager : MonoBehaviour
                 effect.AudioSource.volume = PlayerPrefs.GetFloat("EffectSlider");
             }
     }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        if (focus)
+        {
+            AudioListener.pause = false;
+        }
+        else
+        {
+            AudioListener.pause = true;
+        }
+    }
+
+    public void OnApplicationPause(bool pause)
+    {
+        if (!pause)
+        {
+            AudioListener.pause = false;
+        }
+        else
+        {
+            AudioListener.pause = true;
+        }
+    }
 }
