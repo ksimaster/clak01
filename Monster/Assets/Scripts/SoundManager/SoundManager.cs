@@ -100,26 +100,41 @@ public class SoundManager : MonoBehaviour
 
     public void SoundSliderCheck()
     {
-
-        // var j = 0;
         foreach (Sound sound in Sounds)
         {
             sound.AudioSource.volume = PlayerPrefs.GetFloat("SoundSlider");
-            // soundAudioSources[j].volume = PlayerPrefs.GetFloat("SoundSlider");
-           // Debug.Log(sound.AudioSource.volume);
-            //j++;
         }
-
     }
 
     public void EffectSliderCheck()
     {
-        if (PlayerPrefs.GetFloat("Effect") == 1)
-        {
             foreach (Sound effect in Effects)
             {
                 effect.AudioSource.volume = PlayerPrefs.GetFloat("EffectSlider");
             }
+    }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        if (focus)
+        {
+            AudioListener.pause = false;
+        }
+        else
+        {
+            AudioListener.pause = true;
+        }
+    }
+
+    public void OnApplicationPause(bool pause)
+    {
+        if (!pause)
+        {
+            AudioListener.pause = false;
+        }
+        else
+        {
+            AudioListener.pause = true;
         }
     }
 }
