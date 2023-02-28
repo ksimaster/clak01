@@ -14,6 +14,9 @@ public static class WebGLPluginJS
     //Importing GetAuth
     [DllImport("__Internal")]
     public static extern string GetAuth();
+    //Importing GetAdsOpen
+    [DllImport("__Internal")]
+    public static extern string GetAdsOpen();
     // Importing SetAuth
     [DllImport("__Internal")]
     public static extern void SetAuth();
