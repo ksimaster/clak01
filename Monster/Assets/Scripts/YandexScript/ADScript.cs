@@ -12,7 +12,7 @@ public class ADScript : MonoBehaviour
     //public float lowBalanceFuel;
     public string nameScene;
     public GameObject PanelDeath;
-    private int i = 0;
+    private int i;
     public void ShareFriend(){
 #if UNITY_WEBGL && !UNITY_EDITOR
         WebGLPluginJS.ShareFunction();
@@ -48,8 +48,6 @@ public class ADScript : MonoBehaviour
         if (nameScene == "Menu") ShowAdInterstitial();
         
     }
-
-
     private void Update()
     {
         //if (sliderHome.value <= sliderHome.minValue) ShowAdInterstitial();

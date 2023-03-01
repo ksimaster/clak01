@@ -42,10 +42,10 @@ mergeInto(LibraryManager.library, {
           isAd = "yes";
          }
      
-      var bufferSize = lengthBytesUTF8(isAd) + 1;
-      var buffer = _malloc(bufferSize);
-      stringToUTF8(isAd, buffer, bufferSize);
-      return buffer;
+      var bufferSizeAd = lengthBytesUTF8(isAd) + 1;
+      var bufferAd = _malloc(bufferSizeAd);
+      stringToUTF8(isAd, bufferAd, bufferSizeAd);
+      return bufferAd;
    },
    // Function InterstitialFunction (add ksimaster)
    InterstitialFunction: function () {
