@@ -32,6 +32,21 @@ mergeInto(LibraryManager.library, {
    SetAuth: function () {
       setAuth();
    },
+   // Function GetAuth(add ksimaster)
+   GetAdsOpen: function () {
+      //var player;
+      var isAd = "no";
+        if ( isAds === 'on') 
+        {
+          console.log('Ad Interstitial is ON!' );
+          isAd = "yes";
+         }
+     
+      var bufferSizeAd = lengthBytesUTF8(isAd) + 1;
+      var bufferAd = _malloc(bufferSizeAd);
+      stringToUTF8(isAd, bufferAd, bufferSizeAd);
+      return bufferAd;
+   },
    // Function InterstitialFunction (add ksimaster)
    InterstitialFunction: function () {
       // Show a message as an alert

@@ -10,10 +10,22 @@
 </head>
 <body>
   <script>
+  	var isAds = 'off';
     //add ksimaster
     function showAdInterstitial() {
       console.log('show Ad Interstitial');
-      sdk.adv.showFullscreenAdv();
+      sdk.adv.showFullscreenAdv({
+    callbacks: {
+        onClose: function(wasShown) {
+          // some action after close
+          isAds = 'off';
+        },
+        onOpen: function() {
+          // some action on open
+          isAds = 'on';
+        }
+    }
+});
       
     }
     

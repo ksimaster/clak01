@@ -10,6 +10,7 @@ public class SoundManager : MonoBehaviour
     private AudioSource[] soundAudioSources;
 
     public string mainTheme;
+    private bool isAds;
 
     private void Awake()
     {
@@ -44,6 +45,7 @@ public class SoundManager : MonoBehaviour
 
     private void Update()
     {
+        CheckAds();
         SoundCheck();
         EffectCheck();
         SoundSliderCheck();
@@ -119,6 +121,7 @@ public class SoundManager : MonoBehaviour
         if (focus)
         {
             AudioListener.pause = false;
+            
         }
         else
         {
@@ -136,5 +139,19 @@ public class SoundManager : MonoBehaviour
         {
             AudioListener.pause = true;
         }
+    }
+
+    public void CheckAds()
+    {
+#if UNITY_WEBGL && !UNITY_EDITOR
+        if(WebGLPluginJS.GetAdsOpen() == "yes")
+        {
+            AudioListener.pause = true;
+        }
+        else
+        {
+            AudioListener.pause = false;
+        }
+#endif
     }
 }
